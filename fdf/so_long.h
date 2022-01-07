@@ -6,7 +6,7 @@
 /*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/01/06 20:17:01 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/01/07 22:58:38 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 # include <stdlib.h>
 # define BUFFER_SIZE 42
 #include <fcntl.h>
+typedef struct	s_vars
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
+	void	*img_ptr1;
+	void	*img_ptr2;
+	void	*img_ptr3;
+	void	*img_ptr4;
+
+} t_vars;
 
 char	*get_next_line(int fd);
 void	ft_free(char **s);

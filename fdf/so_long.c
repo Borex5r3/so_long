@@ -6,7 +6,7 @@
 /*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/01/07 05:02:09 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/01/07 22:58:43 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 #include <stdio.h>
 #include "so_long.h"
 
-int	key_code(int key)
+int	key_code(int key, int *p)
 {
 	if (key == 53)
 		exit(0);
+	else if (key == 13)
+		*p = 13;
 	printf("%d\n", key);
+	
 	return (0);
 }
 
-int	exiit(void)
+int	exiit(int key)
 {
-	exit(0);
+	if (key == 53)
+		exit(0);
+	else
+		exit(0);
 	return (0);
 }
 
 void	so_long(int	b, char **matrice)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	void	*img_ptr1;
-	void	*img_ptr2;
-	void	*img_ptr3;
-
+	t_vars	*vars;
 	int		i;
 	int		j;
 	int		k;
@@ -56,6 +56,7 @@ void	so_long(int	b, char **matrice)
 	float	ytmp = 0;
 	int		xw;
 	int		yw;
+	int		key;
 	//char 	matrice[5][50] = {"110110110111", "010010010001", "010110110001","010010010001","010110110001"};
 	int		w = 0;
 	int		h = 0;
@@ -63,7 +64,7 @@ void	so_long(int	b, char **matrice)
 	i = 0;
 	xw = 50;
 	yw = 50;
-	mlx_ptr = mlx_init();
+	vars->mlx_ptr = mlx_init();
 	i = 0;
 	while (matrice[0][i])
 	{
@@ -80,14 +81,15 @@ void	so_long(int	b, char **matrice)
 	//h = 4;
 	//w = w * 50;
 	//h = h * 50;
-	win_ptr = mlx_new_window(mlx_ptr, w * xw, h * yw, "first try");
-	img_ptr = mlx_xpm_file_to_image(mlx_ptr, "lawn.xpm", &x, &y);
-	img_ptr3 = mlx_xpm_file_to_image(mlx_ptr, "door.xpm", &x, &y);
-	mlx_key_hook(win_ptr, key_code, 0);
-	mlx_hook(win_ptr, 17, 1L<<17, exiit, 0);
-	img_ptr1 = mlx_xpm_file_to_image(mlx_ptr, "eagle.xpm", &x, &y);
-	img_ptr2 = mlx_xpm_file_to_image(mlx_ptr, "mouse.xpm", &x, &y);
+	vars->win_ptr = mlx_new_window(vars->mlx_ptr, w * xw, h * yw, "first try");
+	vars->img_ptr = mlx_xpm_file_to_image(vars->mlx_ptr, "lawn.xpm", &x, &y);
+	vars->img_ptr3 = mlx_xpm_file_to_image(vars->mlx_ptr, "door.xpm", &x, &y);
+	mlx_key_hook(vars->win_ptr, key_code, &key);
+	mlx_hook(vars->win_ptr, 17, 1L<<17, exiit, 0);
+	vars->img_ptr1 = mlx_xpm_file_to_image(vars->mlx_ptr, "eagle.xpm", &x, &y);
+	vars->img_ptr2 = mlx_xpm_file_to_image(vars->mlx_ptr, "mouse.xpm", &x, &y);
 
+	printf("%d\n", key);
 	i = 0;
 	y1 = 0;
 	while (i < h)
@@ -97,13 +99,13 @@ void	so_long(int	b, char **matrice)
 		while (x1 < w * xw)
 		{
 			if (matrice[i][j] == '1')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x1, y1);
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr, x1, y1);
 			else if (matrice[i][j] == 'P')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr1, x1, y1);
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr1, x1, y1);
 			else if (matrice[i][j] == 'C')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr2, x1, y1);
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr2, x1, y1);
 			else if (matrice[i][j] == 'E')
-				mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr3, x1, y1);
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr3, x1, y1);
 
 
 
@@ -112,7 +114,8 @@ void	so_long(int	b, char **matrice)
 		}
 		y1 = y1 + yw;
 		i++;
-	}	
+	}
+		
 	//DDA algo
 	/*i = 0;
 	y1 = 50;
@@ -188,7 +191,7 @@ void	so_long(int	b, char **matrice)
 		x1 = x1 + 50;
 	}*/
 
-	mlx_loop(mlx_ptr);
+	mlx_loop(vars->mlx_ptr);
 }
 char	*rm_bn(char *p)
 {
@@ -228,7 +231,7 @@ int	main(int ac, char **av)
 			printf("%s\n", mtr[i]);
 			i++;
 		}
-		printf("a\n");
+		//printf("a\n");
 		so_long(r, mtr);
 
 		
