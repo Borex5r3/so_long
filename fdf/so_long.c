@@ -6,7 +6,7 @@
 /*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/01/07 22:58:43 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/01/07 23:33:44 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 #include <stdio.h>
 #include "so_long.h"
 
-int	key_code(int key, int *p)
+int	key_code(int key)
 {
+	int	i;
+	int	j;
+
+	i = 0;
 	if (key == 53)
 		exit(0);
 	else if (key == 13)
-		*p = 13;
+	{
+		
+	}
 	printf("%d\n", key);
 	
 	return (0);
@@ -64,7 +70,9 @@ void	so_long(int	b, char **matrice)
 	i = 0;
 	xw = 50;
 	yw = 50;
+	vars = malloc(sizeof(t_vars));
 	vars->mlx_ptr = mlx_init();
+	//printf("a\n");
 	i = 0;
 	while (matrice[0][i])
 	{
@@ -84,7 +92,7 @@ void	so_long(int	b, char **matrice)
 	vars->win_ptr = mlx_new_window(vars->mlx_ptr, w * xw, h * yw, "first try");
 	vars->img_ptr = mlx_xpm_file_to_image(vars->mlx_ptr, "lawn.xpm", &x, &y);
 	vars->img_ptr3 = mlx_xpm_file_to_image(vars->mlx_ptr, "door.xpm", &x, &y);
-	mlx_key_hook(vars->win_ptr, key_code, &key);
+	mlx_key_hook(vars->win_ptr, key_code, 0);
 	mlx_hook(vars->win_ptr, 17, 1L<<17, exiit, 0);
 	vars->img_ptr1 = mlx_xpm_file_to_image(vars->mlx_ptr, "eagle.xpm", &x, &y);
 	vars->img_ptr2 = mlx_xpm_file_to_image(vars->mlx_ptr, "mouse.xpm", &x, &y);
