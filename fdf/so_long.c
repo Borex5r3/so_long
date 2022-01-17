@@ -15,6 +15,26 @@
 #include <stdio.h>
 #include "so_long.h"
 
+int	check_c(char	**matrice)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (matrice[i])
+	{
+		j = 0;
+		while (matrice[i][j])
+		{
+			if (matrice[i][j] == 'C')
+			       return (0);
+			j++;	
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	key_code(int key)
 {
 	int	i;
@@ -23,10 +43,90 @@ int	key_code(int key)
 	i = 0;
 	if (key == 53)
 		exit(0);
-	else if (key == 13)
+	else if (key == 'D')
 	{
-		
+		while (matrice[i])
+		{
+			j = 0;
+			while (matrice[i][j])
+			{
+				if (matrice[i][j] == 'P' && 
+						matrice[i][j + 1] != '\0' &&
+						matrice[i][j + 1] != '1')
+				{
+					if (matrice[i][j + 1] == 'E'&& 
+							check_C(matrice))
+						exit(0);
+					else if (matrice[i][j + 1])
+						break;
+					else
+					{
+						matrice[i][j] == '0';
+						matrice[i][++j] == 'P';
+					}
+				}
+				j++;
+			}
+			i++;
+		}	
 	}
+	else if (key == 'A')
+	{
+		while (matrice[i])
+		{
+			j = 0;
+			while (matrice[i][j])
+			{
+				if (matrice[i][j] == 'P' && 
+						matrice[i][j - 1] != '\0' &&
+						matrice[i][j - 1] != '1')
+				{
+					matrice[i][j] == '0';
+					matrice[i][--j] == 'P';
+				}
+				j++;
+			}
+			i++;
+		}	
+	}
+	else if (key == 'W')
+	{
+		while (matrice[i])
+		{
+			j = 0;
+			while (matrice[i][j])
+			{
+				if (matrice[i][j] == 'P' && 
+						matrice[i - 1][j] != '1')
+				{
+					matrice[i][j] == '0';
+					matrice[--i][j] == 'P';
+				}
+				j++;
+			}
+			i++;
+		}	
+	}
+	else if (key == 'S')
+	{
+		while (matrice[i])
+		{
+			j = 0;
+			while (matrice[i][j])
+			{
+				if (matrice[i][j] == 'P' && 
+						matrice[i + 1][j + 1] != '1')
+				{
+					matrice[i][j] == '0';
+					matrice[++i][j] == 'P';
+				}
+				j++;
+			}
+			i++;
+		}	
+	}
+
+
 	printf("%d\n", key);
 	
 	return (0);
