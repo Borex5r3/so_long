@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/01/07 23:33:44 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/03 02:08:19 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 #include <stdio.h>
 #include "so_long.h"
 
-int	check_c(char	**matrice)
+int	check_c(t_vars *vars)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (matrice[i])
+	while (i < vars->h)
 	{
 		j = 0;
-		while (matrice[i][j])
+		while (vars->matrice[i][j])
 		{
-			if (matrice[i][j] == 'C')
+			if (vars->matrice[i][j] == 'C')
 			       return (0);
 			j++;	
 		}
@@ -35,7 +35,43 @@ int	check_c(char	**matrice)
 	return (1);
 }
 
-int	key_code(int key)
+void	draw_map(t_vars *vars)
+{
+	int	i;
+	int	j;
+	int	y1;
+	int	x1;
+	int	xw;
+	int	yw;
+
+	xw = 50;
+	yw = 50;
+	i = 0;
+	y1 = 0;
+	mlx_clear_window(vars->mlx_ptr, vars->win_ptr);
+	while (i < vars->h)
+	{
+		x1 = 0;
+		j = 0;
+		while (x1 < vars->w * xw)
+		{
+			if (vars->matrice[i][j] == '1')
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr, x1, y1);
+			else if (vars->matrice[i][j] == 'P')
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr1, x1, y1);
+			else if (vars->matrice[i][j] == 'C')
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr2, x1, y1);
+			else if (vars->matrice[i][j] == 'E')
+				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr3, x1, y1);
+			x1 = x1 + xw;
+			j++;
+		}
+		y1 = y1 + yw;
+		i++;
+	}
+}
+
+int	key_code(int key, t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -43,92 +79,101 @@ int	key_code(int key)
 	i = 0;
 	if (key == 53)
 		exit(0);
-	else if (key == 'D')
+	else if (key == 2)
 	{
-		while (matrice[i])
+		while (i < vars->h)
 		{
 			j = 0;
-			while (matrice[i][j])
+			while (vars->matrice[i][j])
 			{
-				if (matrice[i][j] == 'P' && 
-						matrice[i][j + 1] != '\0' &&
-						matrice[i][j + 1] != '1')
+				if (vars->matrice[i][j] == 'P' &&
+							vars->matrice[i][j + 1] != '1')
 				{
-					if (matrice[i][j + 1] == 'E'&& 
-							check_C(matrice))
-						exit(0);
-					else if (matrice[i][j + 1])
-						break;
-					else
+					if (vars->matrice[i][j + 1] == 'E' && 
+							check_c(vars))
+						{
+							vars->count++;
+							printf("%d\n", vars->count);
+							exit(0);
+						}
+					else if (vars->matrice[i][j + 1] != 'E')
 					{
-						matrice[i][j] == '0';
-						matrice[i][++j] == 'P';
+						vars->matrice[i][j] = '0';
+						vars->matrice[i][++j] = 'P';
+						vars->count++;
+						printf("%d\n", vars->count);
 					}
 				}
 				j++;
 			}
 			i++;
-		}	
+		}
+		//draw_map(vars);
 	}
-	else if (key == 'A')
+	else if (key == 0)
 	{
-		while (matrice[i])
+		while (i < vars->h)
 		{
 			j = 0;
-			while (matrice[i][j])
+			while (vars->matrice[i][j])
 			{
-				if (matrice[i][j] == 'P' && 
-						matrice[i][j - 1] != '\0' &&
-						matrice[i][j - 1] != '1')
+				if (vars->matrice[i][j] == 'P' && 
+						vars->matrice[i][j - 1] != '1')
 				{
-					matrice[i][j] == '0';
-					matrice[i][--j] == 'P';
+					vars->matrice[i][j] = '0';
+					vars->matrice[i][--j] = 'P';
+					vars->count++;
+					printf("%d\n", vars->count);
 				}
 				j++;
 			}
 			i++;
-		}	
+		}
+		//draw_map(vars);
 	}
-	else if (key == 'W')
+	else if (key == 13)
 	{
-		while (matrice[i])
+		while (i < vars->h)
 		{
 			j = 0;
-			while (matrice[i][j])
+			while (vars->matrice[i][j])
 			{
-				if (matrice[i][j] == 'P' && 
-						matrice[i - 1][j] != '1')
+				if (vars->matrice[i][j] == 'P' && 
+						vars->matrice[i - 1][j] != '1')
 				{
-					matrice[i][j] == '0';
-					matrice[--i][j] == 'P';
+					vars->matrice[i][j] = '0';
+					vars->matrice[--i][j] = 'P';
+					vars->count++;
+					printf("%d\n", vars->count);
 				}
 				j++;
 			}
 			i++;
-		}	
+		}
+		//draw_map(vars);	
 	}
-	else if (key == 'S')
+	else if (key == 1)
 	{
-		while (matrice[i])
+		while (i < vars->h)
 		{
 			j = 0;
-			while (matrice[i][j])
+			while (vars->matrice[i][j])
 			{
-				if (matrice[i][j] == 'P' && 
-						matrice[i + 1][j + 1] != '1')
+				if (vars->matrice[i][j] == 'P' && 
+						vars->matrice[i + 1][j] != '1')
 				{
-					matrice[i][j] == '0';
-					matrice[++i][j] == 'P';
+					vars->matrice[i][j] = '0';
+					vars->matrice[++i][j] = 'P';
+					vars->count++;
+					printf("%d\n", vars->count);
 				}
 				j++;
 			}
 			i++;
-		}	
+		}
+		//draw_map(vars);	
 	}
-
-
-	printf("%d\n", key);
-	
+	draw_map(vars);
 	return (0);
 }
 
@@ -141,9 +186,8 @@ int	exiit(int key)
 	return (0);
 }
 
-void	so_long(int	b, char **matrice)
+void	so_long(int	b, t_vars vars)
 {
-	t_vars	*vars;
 	int		i;
 	int		j;
 	int		k;
@@ -164,142 +208,35 @@ void	so_long(int	b, char **matrice)
 	int		yw;
 	int		key;
 	//char 	matrice[5][50] = {"110110110111", "010010010001", "010110110001","010010010001","010110110001"};
-	int		w = 0;
-	int		h = 0;
-
-	i = 0;
+	vars.h = 0;
+	vars.w = 0;
 	xw = 50;
 	yw = 50;
-	vars = malloc(sizeof(t_vars));
-	vars->mlx_ptr = mlx_init();
+	//vars = malloc(sizeof(t_vars));
+	vars.mlx_ptr = mlx_init();
 	//printf("a\n");
 	i = 0;
-	while (matrice[0][i])
+	while (vars.matrice[0][i])
 	{
 		i++;
-		w++;
+		vars.w++;
 	}
-
+	vars.count = 0;
 	i = 0;
 	while (i < b)
 	{
 		i++;
-		h++;
+		vars.h++;
 	}
-	//h = 4;
-	//w = w * 50;
-	//h = h * 50;
-	vars->win_ptr = mlx_new_window(vars->mlx_ptr, w * xw, h * yw, "first try");
-	vars->img_ptr = mlx_xpm_file_to_image(vars->mlx_ptr, "lawn.xpm", &x, &y);
-	vars->img_ptr3 = mlx_xpm_file_to_image(vars->mlx_ptr, "door.xpm", &x, &y);
-	mlx_key_hook(vars->win_ptr, key_code, 0);
-	mlx_hook(vars->win_ptr, 17, 1L<<17, exiit, 0);
-	vars->img_ptr1 = mlx_xpm_file_to_image(vars->mlx_ptr, "eagle.xpm", &x, &y);
-	vars->img_ptr2 = mlx_xpm_file_to_image(vars->mlx_ptr, "mouse.xpm", &x, &y);
-
-	printf("%d\n", key);
-	i = 0;
-	y1 = 0;
-	while (i < h)
-	{
-		x1 = 0;
-		j = 0;
-		while (x1 < w * xw)
-		{
-			if (matrice[i][j] == '1')
-				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr, x1, y1);
-			else if (matrice[i][j] == 'P')
-				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr1, x1, y1);
-			else if (matrice[i][j] == 'C')
-				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr2, x1, y1);
-			else if (matrice[i][j] == 'E')
-				mlx_put_image_to_window(vars->mlx_ptr, vars->win_ptr, vars->img_ptr3, x1, y1);
-
-
-
-			x1 = x1 + xw;
-			j++;
-		}
-		y1 = y1 + yw;
-		i++;
-	}
-		
-	//DDA algo
-	/*i = 0;
-	y1 = 50;
-	while (matrice[i] && y1 <= 650)
-	{
-		j = 0;
-		x1 = 50;
-		while (x1 < 650)
-		{
-			k = 0;
-			dx = (x1 + 50) - x1;
-			dy = y1 - y1;
-			printf("%f ==> x1 , %f ==> y1\n", x1, y1);
-			if (abs((int)dx) > abs((int)dy))
-				step = abs((int)dx);
-			else
-				step = abs((int)dy);
-			xinc = dx / step;
-			yinc = dy / step;
-			while (k++ < step)
-			{
-				mlx_pixel_put(mlx_ptr, win_ptr, x1, y1, 0x0000FF00);
-				//mlx_pixel_put(mlx_ptr, win_ptr, y1, x1, 0x0000FF00);
-				x1 = x1 + xinc;
-				y1 = y1 + yinc;
-			}
-		
-		}
-		i++;
-		y1 = y1 + 50;
-	}
-	k = 0;
-		dx = x1 - x1;
-		dy = 50 - y1;
-		if (abs((int)dx) > abs((int)dy))
-			step = abs((int)dx);
-		else
-			step = abs((int)dy);
-		xinc = dx / step;
-		yinc = dy / step;
-		while (k++ < step)
-			{
-				mlx_pixel_put(mlx_ptr, win_ptr, x1, y1, 0x0000FF00);
-				mlx_pixel_put(mlx_ptr, win_ptr, y1, x1, 0x0000FF00);
-				x1 = x1 + xinc;
-				y1 = y1 + yinc;
-			}*/
-
-
-
-	//printf("x1 == %f ******* y1 == %f\n", x1, y1);
-
-	/*y1 = 50;
-	while (y1 <= 650)
-	{
-		x1 = 50;
-		while (x1 <= 650)
-		{
-			mlx_pixel_put(mlx_ptr, win_ptr, x1, y1, 0x0000FF00);
-			x1++;
-		}
-		y1 = y1 + 50;
-	}
-	x1 = 50;
-	while (x1 <= 650)
-	{
-		y1 = 50;
-		while (y1 <= 650)
-		{
-			mlx_pixel_put(mlx_ptr, win_ptr, x1, y1, 0x0000FF00);
-			y1++;
-		}
-		x1 = x1 + 50;
-	}*/
-
-	mlx_loop(vars->mlx_ptr);
+	vars.win_ptr = mlx_new_window(vars.mlx_ptr, vars.w * xw, vars.h * yw, "first try");
+	vars.img_ptr = mlx_xpm_file_to_image(vars.mlx_ptr, "lawn.xpm", &x, &y);
+	vars.img_ptr3 = mlx_xpm_file_to_image(vars.mlx_ptr, "door.xpm", &x, &y);
+	mlx_key_hook(vars.win_ptr, key_code, &vars);
+	mlx_hook(vars.win_ptr, 17, 1L<<17, exiit, 0);
+	vars.img_ptr1 = mlx_xpm_file_to_image(vars.mlx_ptr, "eagle.xpm", &x, &y);
+	vars.img_ptr2 = mlx_xpm_file_to_image(vars.mlx_ptr, "mouse.xpm", &x, &y);
+	draw_map(&vars);
+	mlx_loop(vars.mlx_ptr);
 }
 char	*rm_bn(char *p)
 {
@@ -318,7 +255,7 @@ int	main(int ac, char **av)
 	int	fd;
 	int	r;
 	int	i;
-	char	**mtr;
+	t_vars	vars;
 
 	i = 0;
 	r = 0;
@@ -329,21 +266,21 @@ int	main(int ac, char **av)
 			r++;
 
 		//r == b in so_long
-		mtr = malloc(sizeof(char*) * r + 1);
+		vars.matrice = malloc(sizeof(char*) * r + 1);
 		close(fd);
 		fd = open(av[ac - 1], O_RDWR);
-		printf("%d\n", fd);
+		//printf("%d\n", fd);
 		while (i < r)
 		{
-			mtr[i] = rm_bn(get_next_line(fd));
-			printf("%s\n", mtr[i]);
+			vars.matrice[i] = rm_bn(get_next_line(fd));
 			i++;
 		}
 		//printf("a\n");
-		so_long(r, mtr);
+		so_long(r, vars);
 
 		
 
 	}
 	return (0);
 }
+

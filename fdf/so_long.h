@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/01/07 23:33:58 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/03 01:07:51 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct	s_vars
 	void	*img_ptr2;
 	void	*img_ptr3;
 	void	*img_ptr4;
+	char	**matrice;
+	int		h;
+	int		w;
+	int	count;
 
 } t_vars;
 
