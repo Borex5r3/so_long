@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 01:46:30 by adbaich           #+#    #+#              #
-#    Updated: 2022/02/03 18:59:51 by adbaich          ###   ########.fr        #
+#    Updated: 2022/02/03 19:14:02 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,3 @@ all: ${NAME}
 ${NAME}: ${OBJS}
 	${CC} ${FLAGS} ${MFLAGS} ${OBJS} -o ${NAME}
 
-clean:
-	${RM} ${OBJS}
-
-flcean: clean
-	${RM} ${NAME}
-
-re: fclean all

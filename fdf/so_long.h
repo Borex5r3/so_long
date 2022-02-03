@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/03 01:07:51 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/03 19:31:37 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # define BUFFER_SIZE 42
-#include <fcntl.h>
-typedef struct	s_vars
+# include <fcntl.h>
+
+typedef struct s_vars
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -28,9 +29,11 @@ typedef struct	s_vars
 	char	**matrice;
 	int		h;
 	int		w;
-	int	count;
+	int		xw;
+	int		yw;
+	int		count;
 
-} t_vars;
+}	t_vars;
 
 char	*get_next_line(int fd);
 void	ft_free(char **s);
