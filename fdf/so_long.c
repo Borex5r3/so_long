@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/03 02:08:19 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/03 18:42:05 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,64 @@ int	check_c(t_vars *vars)
 		i++;
 	}
 	return (1);
+}
+
+void	check_map(t_vars *vars)
+{
+	int	i;
+	int	j;
+	int	player;
+	int	door;
+	int	collect;
+
+	i = 0;
+	player = 0;
+	door = 0;
+	collect = 0;
+	while(i < vars->h)
+	{
+		j = 0;
+		while (vars->matrice[i][j])
+		{
+
+			if (vars->matrice[0][j] != '1' || vars->matrice[vars->h - 1][j] != '1'
+						|| vars->matrice[i][0] != '1' || vars->matrice[i][vars->w - 1] != '1')
+			{
+				printf("Error\nCheck The Wall !!");
+				exit(0);
+			}
+			/*if (vars->matrice[i][j] == 'P' || vars->matrice[i][j] == 'E'
+						|| vars->matrice[i][j] == 'C')*/
+				if (vars->matrice[i][j] == 'P')
+				{
+					if (player >= 1)
+					{
+						printf("Error\nThe game requires at most one player !!");
+						exit(0);
+					}
+					player++;
+				}
+				else if (vars->matrice[i][j] == 'C')
+					collect++;
+				else if (vars->matrice[i][j] == 'E')
+				{
+					if (door >= 1)
+					{
+						printf("Error\nThe game requires at most one exit !!");
+						exit(0);
+					}
+					door++;
+				}
+			j++;
+		}
+		i++;
+	}
+	if (player == 0 || door == 0
+			|| collect == 0)
+	{
+		printf("Error\nThe game requires at least one player, one item to pick up and one exit !!");
+		exit(0);
+	}
 }
 
 void	draw_map(t_vars *vars)
@@ -228,6 +286,7 @@ void	so_long(int	b, t_vars vars)
 		i++;
 		vars.h++;
 	}
+	check_map(&vars);
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, vars.w * xw, vars.h * yw, "first try");
 	vars.img_ptr = mlx_xpm_file_to_image(vars.mlx_ptr, "lawn.xpm", &x, &y);
 	vars.img_ptr3 = mlx_xpm_file_to_image(vars.mlx_ptr, "door.xpm", &x, &y);
@@ -246,7 +305,8 @@ char	*rm_bn(char *p)
 	while (p[i])
 		i++;
 	i--;
-	p[i] = '\0';
+	if (p[i] == '\n')
+		p[i] = '\0';
 	return (p);
 }
 
