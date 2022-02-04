@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 18:39:19 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:28:30 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main(int ac, char **av)
 	r = 0;
 	if (ac == 2)
 	{
+		check_ext(ac[av - 1]);
 		fd = open(av[ac - 1], O_RDWR);
 		while (get_next_line(fd))
 			r++;

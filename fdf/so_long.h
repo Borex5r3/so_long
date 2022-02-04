@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 18:38:07 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:28:11 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void	check_map_elements(t_vars *vars);
 void	check_last(char *p, int r);
 void	fill_matrice(char *p, t_vars vars, int r);
 char	*rm_bn(char *p);
+void	check_ext(char *p);
 
 #endif

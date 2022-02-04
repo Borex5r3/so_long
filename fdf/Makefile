@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 01:46:30 by adbaich           #+#    #+#              #
-#    Updated: 2022/02/04 18:31:26 by adbaich          ###   ########.fr        #
+#    Updated: 2022/02/04 19:29:11 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS = so_long.c \
 	   check_map_elements.c \
 	   check_last.c \
 	   fill_matrice.c \
+	   check_ext.c \
 
 NAME = so_long
 
