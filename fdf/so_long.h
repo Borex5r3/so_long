@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 16:35:26 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 18:38:07 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_reading(int fd, char *d_main);
 char	*ft_returning(char	*d_main);
 char	*ft_modifying(char *d_main);
-void	ft_strlcpy(char *dst, const char	*src);
 void	move_right(t_vars *vars, char *c, char *p, int *j);
 void	check_map(t_vars *vars);
 void	draw_map(t_vars *vars);
