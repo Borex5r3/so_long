@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 01:18:58 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:35:26 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_vars
 
 char	*get_next_line(int fd);
 void	ft_free(char **s);
-size_t	ft_strlen(char	*s);
+int		ft_strlen(char	*s);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_reading(int fd, char *d_main);
@@ -49,5 +49,8 @@ void	check_map(t_vars *vars);
 void	draw_map(t_vars *vars);
 int		key_code(int key, t_vars *vars);
 void	check_map_elements(t_vars *vars);
+void	check_last(char *p, int r);
+void	fill_matrice(char *p, t_vars vars, int r);
+char	*rm_bn(char *p);
 
 #endif

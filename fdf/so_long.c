@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 00:56:46 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:44:59 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,8 @@ int	main(int ac, char **av)
 			r++;
 		vars.matrice = malloc(sizeof(char *) * r + 1);
 		close(fd);
-		fd = open(av[ac - 1], O_RDWR);
-		while (i < r)
-		{
-			vars.matrice[i] = rm_bn(get_next_line(fd));
-			i++;
-		}
+		check_last(av[ac - 1], r);
+		fill_matrice(av[ac - 1], vars, r);
 		so_long(r, vars);
 	}
 	else

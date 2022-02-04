@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 01:46:30 by adbaich           #+#    #+#              #
-#    Updated: 2022/02/04 01:19:14 by adbaich          ###   ########.fr        #
+#    Updated: 2022/02/04 16:33:14 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS = so_long.c \
 	   draw_map.c \
 	   key_code.c \
 	   check_map_elements.c \
+	   check_last.c \
+	   fill_matrice.c \
 
 OBJS = ${SRCS: .c=.o}
 

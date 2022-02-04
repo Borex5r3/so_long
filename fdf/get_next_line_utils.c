@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:01:45 by adbaich           #+#    #+#             */
-/*   Updated: 2022/01/06 18:55:23 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:11:01 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_free(char **s)
 	*s = NULL;
 }
 
-size_t	ft_strlen(char	*s)
+int	ft_strlen(char	*s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!s)
