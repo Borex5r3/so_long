@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 19:28:30 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 15:31:23 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	so_long_help(t_vars *vars, int b)
 	vars->w = 0;
 	vars->xw = 50;
 	vars->yw = 50;
+	vars->h = 0;
 	vars->mlx_ptr = mlx_init();
 	i = 0;
 	while (vars->matrice[0][i])
@@ -39,12 +40,7 @@ void	so_long_help(t_vars *vars, int b)
 		vars->w++;
 	}
 	vars->count = 0;
-	i = 0;
-	while (i < b)
-	{
-		i++;
-		vars->h++;
-	}
+	vars->h = b;
 }
 
 void	so_long(int b, t_vars vars)
@@ -94,8 +90,8 @@ int	main(int ac, char **av)
 	{
 		check_ext(ac[av - 1]);
 		fd = open(av[ac - 1], O_RDWR);
-		while (get_next_line(fd))
-			r++;
+		vars.str = get_next_line(fd);
+		r = calculate_r(vars, fd);
 		vars.matrice = malloc(sizeof(char *) * r + 1);
 		close(fd);
 		check_last(av[ac - 1], r);

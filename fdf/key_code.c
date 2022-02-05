@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_code.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 00:54:21 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 00:55:49 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/04 22:46:48 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,10 @@ static void	move_right_help(t_vars *vars)
 int	key_code(int key, t_vars *vars)
 {
 	if (key == 53)
+	{
 		exit(0);
+		system("leaks");
+	}
 	else if (key == 2)
 		move_right_help(vars);
 	else if (key == 0)

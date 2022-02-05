@@ -6,7 +6,7 @@
 #    By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/03 01:46:30 by adbaich           #+#    #+#              #
-#    Updated: 2022/02/04 19:29:11 by adbaich          ###   ########.fr        #
+#    Updated: 2022/02/05 01:05:15 by adbaich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,13 @@ SRCS = so_long.c \
 
 NAME = so_long
 
-CC = cc
+CC = cc -g
 
 RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror
 
-MFLAGS = -fsanitize=address -lmlx -framework OpenGL -framework AppKit
+MFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 all: ${NAME}
 
