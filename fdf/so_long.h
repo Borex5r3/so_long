@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:30:53 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 22:13:16 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,11 @@ void	fill_matrice(char *p, t_vars vars, int r);
 char	*rm_bn(char *p);
 void	check_ext(char *p);
 int		calculate_r(t_vars vars, int fd);
+void	ft_putnbr_fd(int n);
+void	check_xpm(t_vars vars);
+int		check_c(t_vars *vars);
+void	move_down(t_vars *vars, char *c, char *p, int *j);
+void	move_up(t_vars *vars, char *c, char *p, int *i);
+void	move_left(t_vars *vars, char *c, char *p, int *i);
 
 #endif

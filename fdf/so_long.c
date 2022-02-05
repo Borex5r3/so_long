@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:48:46 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 19:41:50 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void	so_long_help(t_vars *vars, int b)
 
 void	so_long(int b, t_vars vars)
 {
-	int	x;
-	int	y;
-
-	x = 50;
-	y = 50;
 	so_long_help(&vars, b);
 	check_map(&vars);
 	vars.win_ptr = mlx_new_window(vars.mlx_ptr, vars.w * vars.xw, \
-	vars.h * vars.yw, "first try");
-	vars.img_ptr = mlx_xpm_file_to_image(vars.mlx_ptr, "lawn.xpm", &x, &y);
-	vars.img_ptr3 = mlx_xpm_file_to_image(vars.mlx_ptr, "door.xpm", &x, &y);
+	vars.h * vars.yw, "./so_long");
+	vars.img_ptr = mlx_xpm_file_to_image(vars.mlx_ptr, "lawn.xpm", \
+	&vars.xw, &vars.yw);
+	vars.img_ptr3 = mlx_xpm_file_to_image(vars.mlx_ptr, "door.xpm", \
+	&vars.xw, &vars.yw);
 	mlx_key_hook(vars.win_ptr, key_code, &vars);
 	mlx_hook(vars.win_ptr, 17, 1L << 17, exiit, 0);
-	vars.img_ptr1 = mlx_xpm_file_to_image(vars.mlx_ptr, "eagle.xpm", &x, &y);
-	vars.img_ptr2 = mlx_xpm_file_to_image(vars.mlx_ptr, "mouse.xpm", &x, &y);
+	vars.img_ptr1 = mlx_xpm_file_to_image(vars.mlx_ptr, "eagle.xpm", \
+	&vars.xw, &vars.yw);
+	vars.img_ptr2 = mlx_xpm_file_to_image(vars.mlx_ptr, "mouse.xpm", \
+	&vars.xw, &vars.yw);
+	check_xpm(vars);
 	draw_map(&vars);
 	mlx_loop(vars.mlx_ptr);
 }

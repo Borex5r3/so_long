@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_right.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adbaich <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 00:36:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 00:37:43 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 21:14:02 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "so_long.h"
 
-static int	check_c(t_vars *vars)
+int	check_c(t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -42,7 +42,8 @@ void	move_right(t_vars *vars, char *c, char *p, int *j)
 		if (*p == 'E' && check_c(vars))
 		{
 			vars->count++;
-			printf("%d\n", vars->count);
+			ft_putnbr_fd(vars->count);
+			write(1, "\n", 1);
 			exit(0);
 		}
 		else if (*p != 'E')
@@ -51,7 +52,8 @@ void	move_right(t_vars *vars, char *c, char *p, int *j)
 			*p = 'P';
 			vars->count++;
 			*j = *j + 1;
-			printf("%d\n", vars->count);
+			ft_putnbr_fd(vars->count);
+			write(1, "\n", 1);
 		}
 	}
 }

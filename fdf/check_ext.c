@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:16:45 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:59:30 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 19:52:40 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include <mlx.h>
 #include <stdio.h>
 #include "so_long.h"
+
+void	check_xpm(t_vars vars)
+{
+	if (vars.img_ptr == NULL || vars.img_ptr1 == NULL
+		|| vars.img_ptr2 == NULL || vars.img_ptr3 == NULL)
+	{
+		write(1, "XPM damaged\n", 12);
+		exit(0);
+	}	
+}
 
 int	ft_strncmp(const char *s1, const char *s2)
 {

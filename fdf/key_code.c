@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 00:54:21 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 22:46:48 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 22:15:29 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "so_long.h"
 
-static void	move_left(t_vars *vars)
+static void	move_left_help(t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -26,21 +26,14 @@ static void	move_left(t_vars *vars)
 		j = 0;
 		while (vars->matrice[i][j])
 		{
-			if (vars->matrice[i][j] == 'P' &&
-					vars->matrice[i][j - 1] != '1')
-			{
-				vars->matrice[i][j] = '0';
-				vars->matrice[i][--j] = 'P';
-				vars->count++;
-				printf("%d\n", vars->count);
-			}
+			move_left(vars, &vars->matrice[i][j], &vars->matrice[i][j - 1], &j);
 			j++;
 		}
 		i++;
 	}
 }
 
-static void	move_up(t_vars *vars)
+static void	move_up_help(t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -51,21 +44,14 @@ static void	move_up(t_vars *vars)
 		j = 0;
 		while (vars->matrice[i][j])
 		{
-			if (vars->matrice[i][j] == 'P' &&
-					vars->matrice[i - 1][j] != '1')
-			{
-				vars->matrice[i][j] = '0';
-				vars->matrice[--i][j] = 'P';
-				vars->count++;
-				printf("%d\n", vars->count);
-			}
+			move_up(vars, &vars->matrice[i][j], &vars->matrice[i - 1][j], &i);
 			j++;
 		}
 		i++;
 	}
 }
 
-static void	move_down(t_vars *vars)
+static void	move_down_help(t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -76,14 +62,7 @@ static void	move_down(t_vars *vars)
 		j = 0;
 		while (vars->matrice[i][j])
 		{
-			if (vars->matrice[i][j] == 'P' &&
-					vars->matrice[i + 1][j] != '1')
-			{
-				vars->matrice[i][j] = '0';
-				vars->matrice[++i][j] = 'P';
-				vars->count++;
-				printf("%d\n", vars->count);
-			}
+			move_down(vars, &vars->matrice[i][j], &vars->matrice[i + 1][j], &i);
 			j++;
 		}
 		i++;
@@ -119,11 +98,11 @@ int	key_code(int key, t_vars *vars)
 	else if (key == 2)
 		move_right_help(vars);
 	else if (key == 0)
-		move_left(vars);
+		move_left_help(vars);
 	else if (key == 13)
-		move_up(vars);
+		move_up_help(vars);
 	else if (key == 1)
-		move_down(vars);
+		move_down_help(vars);
 	draw_map(vars);
 	return (0);
 }
