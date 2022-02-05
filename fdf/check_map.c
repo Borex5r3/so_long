@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 00:43:38 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:19:37 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 16:01:36 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	check_wall(t_vars *vars)
 					|| vars->matrice[i][0] != '1'
 						|| vars->matrice[i][vars->w - 1] != '1')
 			{
-				printf("Error\nCheck The Wall !!");
+				write(1, "Error\nCheck The Wall !!", 23);
 				exit(0);
 			}
 			j++;
@@ -46,7 +46,7 @@ static void	check_all( t_vars *vars, int player, int collect, int door)
 	if (player == 0 || door == 0
 		|| collect == 0)
 	{
-		printf("Error\nThe game requires at least P, C and E !!");
+		write(1, "Error\nThe game requires at least P, C and E !!", 46);
 		exit(0);
 	}
 }
@@ -66,7 +66,7 @@ static void	check_pc(t_vars *vars, int *player, int *collect)
 			{
 				if (*player >= 1)
 				{
-					printf("Error\nThe game requires at most one player !!");
+					write(1, "Error\nThe game requires one player !!", 37);
 					exit(0);
 				}
 				*player = *player + 1;
@@ -94,7 +94,7 @@ static void	check_door(t_vars *vars, int *door)
 			{
 				if (*door >= 1)
 				{
-					printf("Error\nThe game requires at most one exit !!");
+					write(1, "Error\nThe game requires at most one exit !!", 43);
 					exit(0);
 				}
 				*door = *door + 1;

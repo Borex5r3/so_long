@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:16:45 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 00:48:17 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 15:59:30 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	check_ext(char *p)
 	}
 	if (ft_strncmp(m, p + i))
 	{
-		printf("Error\nOnly .ber Extension !!");
+		write(1, "Error\nOnly .ber Extension !!", 28);
 		exit(0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:31:23 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 15:48:46 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ int	main(int ac, char **av)
 		so_long(r, vars);
 	}
 	else
-		printf("Please Enter One Map !\n");
+		write(1, "Please Enter One Map !\n", 23);
 	return (0);
 }

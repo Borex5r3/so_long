@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 01:14:38 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/04 01:16:41 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 15:56:44 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_map_elements(t_vars *vars)
 						&& vars->matrice[i][j] != 'E'
 							&& vars->matrice[i][j] != '1')
 			{
-				printf("Error!\nOnly P, E, 0, 1 and C !!");
+				write(1, "Error!\nOnly P, E, 0, 1 and C !!", 31);
 				exit(0);
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 16:16:54 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:20:33 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/05 15:58:01 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_last(char *p, int r)
 			l = get_next_line(fd);
 			if (l[ft_strlen(l) - 1] != '1')
 			{
-				printf("Error\nCheck The Wall xd!!");
+				write(1, "Error\nCheck The Wall xd!!", 25);
 				exit(0);
 			}
 			free(l);
