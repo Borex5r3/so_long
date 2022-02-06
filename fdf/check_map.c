@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 00:43:38 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 16:01:36 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/06 18:58:33 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,7 @@ static void	check_door(t_vars *vars, int *door)
 		while (vars->matrice[i][j])
 		{
 			if (vars->matrice[i][j] == 'E')
-			{
-				if (*door >= 1)
-				{
-					write(1, "Error\nThe game requires at most one exit !!", 43);
-					exit(0);
-				}
 				*door = *door + 1;
-			}
 			j++;
 		}
 		i++;

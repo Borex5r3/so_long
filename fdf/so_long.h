@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 17:04:57 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 22:13:16 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/06 19:17:14 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ int		check_c(t_vars *vars);
 void	move_down(t_vars *vars, char *c, char *p, int *j);
 void	move_up(t_vars *vars, char *c, char *p, int *i);
 void	move_left(t_vars *vars, char *c, char *p, int *i);
+void	check_fd(int fd);
+void	check_last_help(int i, int r, int fd);
+void	check_vars(t_vars vars);
 
 #endif

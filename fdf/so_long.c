@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:22:34 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 19:41:50 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/06 19:21:21 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 #include <stdio.h>
 #include "so_long.h"
 
-int	exiit(int key)
+int	exiit(void)
 {
-	if (key == 53)
-		exit(0);
-	else
-		exit(0);
+	exit(0);
 	return (0);
 }
 
@@ -90,9 +87,12 @@ int	main(int ac, char **av)
 	{
 		check_ext(ac[av - 1]);
 		fd = open(av[ac - 1], O_RDWR);
+		check_fd(fd);
 		vars.str = get_next_line(fd);
+		check_vars(vars);
 		r = calculate_r(vars, fd);
 		vars.matrice = malloc(sizeof(char *) * r + 1);
+		check_vars(vars);
 		close(fd);
 		check_last(av[ac - 1], r);
 		fill_matrice(av[ac - 1], vars, r);

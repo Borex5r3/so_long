@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 01:14:38 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 15:56:44 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/06 19:16:53 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 #include <mlx.h>
 #include <stdio.h>
 #include "so_long.h"
+
+void	check_vars(t_vars vars)
+{
+	if (!vars.str)
+	{	
+		write(1, "Map is empty !!\n", 16);
+		exit(0);
+	}
+	else if (!vars.matrice)
+		exit(0);
+}
 
 void	check_map_elements(t_vars *vars)
 {

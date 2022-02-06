@@ -6,7 +6,7 @@
 /*   By: adbaich <adbaich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 16:16:54 by adbaich           #+#    #+#             */
-/*   Updated: 2022/02/05 22:14:48 by adbaich          ###   ########.fr       */
+/*   Updated: 2022/02/06 19:06:06 by adbaich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,31 +84,39 @@ void	move_down(t_vars *vars, char *c, char *p, int *i)
 	}
 }
 
+void	check_last_help(int i, int r, int fd)
+{
+	char	*p;
+
+	if (i == r - 1)
+	{
+		p = get_next_line(fd);
+		printf("%s", p);
+		if (p[ft_strlen(p) - 1] != '1')
+		{
+			write(1, "Error\nCheck The Wall xd!!", 25);
+			exit(0);
+		}
+		free(p);
+	}
+	else
+	{
+		p = get_next_line(fd);
+		free(p);
+	}
+}
+
 void	check_last(char *p, int r)
 {
 	int		i;
 	int		fd;
-	char	*l;
 
 	i = -1;
 	fd = open(p, O_RDWR);
+	check_fd(fd);
 	while (++i < r)
 	{
-		if (i == r - 1)
-		{
-			l = get_next_line(fd);
-			if (l[ft_strlen(l) - 1] != '1')
-			{
-				write(1, "Error\nCheck The Wall xd!!", 25);
-				exit(0);
-			}
-			free(l);
-		}
-		else
-		{
-			l = get_next_line(fd);
-			free(l);
-		}
+		check_last_help(i, r, fd);
 	}
 	close(fd);
 }
